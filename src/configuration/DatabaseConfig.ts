@@ -1,16 +1,18 @@
 import mongoose from "mongoose";
 import DotenvComponent from "../components/DotEnvComponents";
+import LoggerComponent from "../components/LoggerComponent";
 
 export default class DatabaseConfig {
 
     public static async connect(){
         const urlDatabase = DotenvComponent.API_DATABASE_URL;
+        const logger = new LoggerComponent(DatabaseConfig.name);
         try {
             await mongoose.connect(`${urlDatabase}`);
-           
-            return "Successfully";
+            logger.info("Database connect successfully");
+            return;
         } catch (error) {
-            return "Unsuccessfully";
+            logger.error("Database connect unsuccessfully", error, error.message);
         }
     }
 }

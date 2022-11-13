@@ -39,7 +39,7 @@ export default class ProductService {
     }
 
     public async read(){
-        return this.repository.read;
+        return this.repository.read();
     }
 
     public async delete(uuid: string): Promise<Product>{
