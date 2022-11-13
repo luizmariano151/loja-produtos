@@ -1,6 +1,7 @@
 import User from "../types/User";
 import UserRepository from "../repositories/UserRepository";
 import CryptographyComponent from "../components/CryptographyComponent";
+import JWTComponent from "../components/JWTComponent";
 
 export default class UserService {
   private repository: UserRepository;
@@ -53,7 +54,6 @@ export default class UserService {
   }
 
   public async addRule(uuid: string, newRule: string): Promise<boolean> {
-
     const user: User = await this.findByUuid(uuid);
 
     if (user !== undefined) {
@@ -82,16 +82,19 @@ export default class UserService {
     return false;
   }
 
-  public async login(password: string, email: string): Promise<boolean> {
+  public async login(password: string, email: string): Promise<any> {
     const user = await this.findByEmail(email);
 
     if (user) {
       const validatesPass = CryptographyComponent.decrypt(user.password);
       if (password === validatesPass) {
-        return true;
+        return {
+          uuid: user._id,
+          token: JWTComponent.generateToken(user),
+        };
       }
     }
 
-    return false;
+    return undefined;
   }
 }
