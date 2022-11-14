@@ -18,6 +18,5 @@ export default class UserRoutes extends RoutesTemplate {
         this.routes.post("/login", controller.login);
         
     }
-
-
+    
 }

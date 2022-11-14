@@ -1,6 +1,7 @@
 import express, { Express, json } from "express";
 import cors from "cors";
 import UserRoutes from "../routes/UserRoutes";
+import ProductRoutes from "../routes/ProductRoutes";
 
 export default class App {
     private app: Express;
@@ -18,8 +19,10 @@ export default class App {
 
     private configRoutes(): void {
         const userRoutes = new UserRoutes();
+        const productRoutes = new ProductRoutes();
 
         this.app.use("/user", userRoutes.getRoutes());
+        this.app.use("/product", productRoutes.getRoutes());
        
     }
 

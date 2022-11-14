@@ -50,13 +50,14 @@ export default class ProductService {
         }
     }
 
-    public async update(product: Product): Promise<Product>{
+    public async update(uuid: string, description: string, price: string): Promise<Product>{
         try {
-            const prod = await this.findByUuid(product._id);
-            if(prod !== undefined){
-                return await this.repository.update(prod);
-            }
-            return undefined;
+            const product = await this.repository.findByUuid(uuid);
+            product.description = description === undefined ? product.description : description;
+            product.price = price === undefined ? product.price : price;
+
+            return await this.repository.update(product);
+       
         } catch (error) {
             return undefined;
         }
