@@ -7,7 +7,9 @@
     "dev": "ts-node-dev --files src/Server.ts",
     "test": "jest",
     "commit": "npx cz",
-    "release": "npx standard-version"
+    "release": "npx standard-version",
+    "build": "npx tsc",
+    "start": "node dist/Server.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -26,8 +28,7 @@
     "jest": "^29.3.1",
     "standard-version": "^9.5.0",
     "ts-jest": "^29.0.3",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^4.8.4"
+    "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -37,6 +38,7 @@
     "jsonwebtoken": "^8.5.1",
     "logform": "^2.4.2",
     "mongoose": "^6.7.2",
+    "typescript": "^4.8.4",
     "uuid": "^9.0.0",
     "winston": "^3.8.2"
   },

@@ -16,7 +16,7 @@ class Server {
   public startServer(): void {
     DatabaseConfig.connect();
     this.server.listen(
-      DotenvComponent.API_PORT,
+      DotenvComponent.PORT,
       Server.showTheSystemInformation
     );
   }
@@ -29,7 +29,7 @@ class Server {
     const cpus = os.cpus();
     const logger = new LoggerComponent(Server.name);
 
-    logger.info(`SERVICE RUNNING ON PORT: ${DotenvComponent.API_PORT}`);
+    logger.info(`SERVICE RUNNING ON PORT: ${DotenvComponent.PORT}`);
     logger.info(`SO: ${type} ${platform} ${arch}`);
     logger.info(`RAM: ${Math.floor(mem * 10 ** -9)} GB`);
     logger.info(`CORES: ${cpus.length}`);
